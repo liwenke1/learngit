@@ -1,0 +1,25 @@
+def wayMerge(a,b):
+	merseries = []
+	i = 0
+	j = 0
+	while i < len(a) and j < len(b):
+		if a[i] >= b[j]:
+			merseries.append(b[j])
+			j +=1
+		else:
+			merseries.append(a[i])
+			i += 1
+	merseries.extend(a[i:])
+	merseries.extend(b[j:])
+	return merseries
+			
+def mergeSort(series):
+	if len(series) <= 1:
+		return series
+	i = len(series)//2
+	l = mergeSort(series[:i])
+	r = mergeSort(series[i:]) 
+	return wayMerge(l,r)
+		
+data = [5, 2, 8, 4, 7, 4, 3, 9, 2, 0,1,16]
+print(mergeSort(data))
